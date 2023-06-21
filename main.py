@@ -6,7 +6,7 @@ from trello import TrelloClient
 
 
 # Caminho para o arquivo JSON
-json_file_path = '/Users/andregprs/Documents/keys.json'
+json_file_path = 'C:\keys.json'
 
 # Função para carregar as chaves e tokens do arquivo JSON
 def load_keys_from_file(file_path):
@@ -89,7 +89,7 @@ def check_trello():
             if card_id not in initial_cards:
                 member_name = get_member_name(card_id)
                 card_name = card_data['name']
-                send_discord_message(f'Novo card criado por {member_name} no Trello: {card_name}')
+                send_discord_message(f'@884517607062011915 Novo card criado por {member_name} no Trello: {card_name}')
                 initial_cards.append(card_id)  # Adiciona o ID do card à lista de cards iniciais
 
 # Obtém os cards iniciais
