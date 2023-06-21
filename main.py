@@ -6,7 +6,7 @@ from trello import TrelloClient
 
 
 # Caminho para o arquivo JSON
-json_file_path = r'C:\keys.json'
+json_file_path = '/Users/andregprs/Documents/keys.json'
 
 # Função para carregar as chaves e tokens do arquivo JSON
 def load_keys_from_file(file_path):
@@ -47,9 +47,30 @@ def send_discord_message(message):
     webhook.execute()
 
 # Função para obter o nome do usuário pelo ID
-def get_member_name(id_card):
-   # A fazer... implementar o nome do usuario que criou o card 
-    return 
+def get_member_name(card_id):
+
+    url = f"https://api.trello.com/1/boards/{TRELLO_BOARD_ID}/actions"
+
+    query = {
+        'key': TRELLO_API_KEY,
+        'token': TRELLO_TOKEN,
+           "filter": "createCard",
+        "fields": "idMemberCreator",
+        "idModels": card_id
+    }
+
+    response = requests.request( "GET", url, params=query)
+    if response.status_code == 200:
+        data = response.json()
+        if len(data) > 0:
+            name = data[0]["memberCreator"]["fullName"]
+            print(name)
+        else:
+            print("Nenhum dado encontrado.")
+    else:
+        print("Erro na requisição:", response.status_code)
+
+    return name
     
 
 # Função para verificar as alterações no Trello
