@@ -75,7 +75,7 @@ def get_member_name(card_id):
 
 # Função para verificar as alterações no Trello
 def check_trello():
-    url = f'https://api.trello.com/1/lists/{TRELLO_LIST_ID}/cards'
+    url = f'https://api.trello.com/1/lists/{LISTA_FINALIZADO_ID}/cards'
     params = {
         'key': TRELLO_API_KEY,
         'token': TRELLO_TOKEN
