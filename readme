@@ -8,3 +8,7 @@ com os sequintes dados:
   "TRELLO_BOARD_ID": "SUA_TRELLO_BOARD_ID_AQUI",
   "TRELLO_LIST_ID": "SUA_TRELLO_LIST_ID_AQUI" 
 }
+
+instalar as seguintes libs:
+pip install py-trello
+pip install discord-webhook
