@@ -1,0 +1,10 @@
+Criar um json em C:/keys.json
+com os sequintes dados:
+
+{
+  "TRELLO_API_KEY": "SUA_API_KEY_AQUI",
+  "TRELLO_TOKEN": "SEU_TOKEN_AQUI",
+  "DISCORD_WEBHOOK_URL": "SUA_URL_DO_WEBHOOK_AQUI",
+  "TRELLO_BOARD_ID": "SUA_TRELLO_BOARD_ID_AQUI",
+  "TRELLO_LIST_ID": "SUA_TRELLO_LIST_ID_AQUI" 
+}
