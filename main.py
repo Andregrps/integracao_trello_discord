@@ -22,10 +22,8 @@ TRELLO_API_KEY = keys_data['TRELLO_API_KEY']
 TRELLO_TOKEN = keys_data['TRELLO_TOKEN']
 DISCORD_WEBHOOK_URL = keys_data['DISCORD_WEBHOOK_URL']
 TRELLO_BOARD_ID = keys_data['TRELLO_BOARD_ID']
+TRELLO_LIST_ID = keys_data['TRELLO_LIST_ID']
 
-#TRELLO_LIST_ID = '6216cff688484981831f3df7'  # ID da lista "BUG URGENTE"
-LISTA_FINALIZADO_ID = keys_data['LISTA_FINALIZADO_ID']
-LISTA_DESENVOLVIMENTO_ID = keys_data['LISTA_DESENVOLVIMENTO_ID']
 
 # Inicialização do webhook do Discord
 webhook = DiscordWebhook(url=DISCORD_WEBHOOK_URL)
@@ -75,7 +73,7 @@ def get_member_name(card_id):
 
 # Função para verificar as alterações no Trello
 def check_trello():
-    url = f'https://api.trello.com/1/lists/{LISTA_FINALIZADO_ID}/cards'
+    url = f'https://api.trello.com/1/lists/{TRELLO_LIST_ID}/cards'
     params = {
         'key': TRELLO_API_KEY,
         'token': TRELLO_TOKEN
@@ -89,7 +87,7 @@ def check_trello():
             if card_id not in initial_cards:
                 member_name = get_member_name(card_id)
                 card_name = card_data['name']
-                send_discord_message(f'@884517607062011915 Novo card criado por {member_name} no Trello: {card_name}')
+                send_discord_message(f'<@&989164790087827498> Novo card criado por {member_name} no Trello: {card_name}')
                 initial_cards.append(card_id)  # Adiciona o ID do card à lista de cards iniciais
 
 # Obtém os cards iniciais
