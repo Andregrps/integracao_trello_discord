@@ -12,3 +12,33 @@ com os sequintes dados:
 instalar as seguintes libs:
 pip install py-trello
 pip install discord-webhook
+
+-------
+coisas que ainda precisam ser feitas:
+
+ - Fazer com que o bot consiga marcar cargos no discord: "Programação", "Suporte", "Todos",
+
+ - Fazer o bot Mandar mensagem no Discord mencionando a PROGRAMAÇÃO se um card for criado no Trello na coluna BUGS URGENTES:
+    "@Todos: [usuario-trello] Criou card em [BUGS-URGENTES] 
+    Nome do card: [nome-do-card-criado]
+    Link: https://trello.com/c/[shortlink-do-card-movido]"
+
+ - Fazer o bot Mandar mensagem no Discord marcando todo mundo quando mover em um card no Trello para a coluna A TESTAR:
+    "@todos [usuario-trello] moveu um card para [A-TESTAR]:
+    Setup gerado: [nome-do-card-movido]
+    Link do card: https://trello.com/c/[shortlink-do-card-movido]"
+
+ - Enviar mensagem no Discord informando que algum usuario voltou um card do testar para o bug urgentes:
+    "@todos : [usuario-trello] voltou um card do [A-TESTAR] para [BUGS-URGENTES].
+    Link do card: https://trello.com/c/[shortlink-do-card-movido]"
+
+ - Fazer o bot Mandar mensagem no Discord marcando todo mundo quando mover um card no Trello do "Backlog" para a coluna "Em Desenvolvimento": 
+    "@Todos Card movido de [Backlog] para [Em Desenvolvimento]:
+    [usuario-trello] voltou a desenvolver o card: [nome-do-card-movido]
+    Link do card movido: https://trello.com/c/[shortlink-do-card-movido]"
+ 
+ - Fazer o bot Mandar mensagem no Discord marcando todo mundo quando mover em um card no Trello do "Em Desenvolvimento" para a coluna "Backlog":
+    "@Todos [usuario-trello] moveu um card para [Backlog]:
+    O desenvolvimento do card [nome-do-card-movido] foi pausado para desenvolver outro card.
+    Link do card movido: https://trello.com/c/[shortlink-do-card-movido]"
+
