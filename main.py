@@ -87,7 +87,7 @@ def check_trello():
             if card_id not in initial_cards:
                 member_name = get_member_name(card_id)
                 card_name = card_data['name']
-                send_discord_message(f'<@&989164790087827498> Novo card criado por {member_name} no Trello: {card_name}')
+                send_discord_message(f'<@&989164790087827498> Novo card criado por {member_name}, descrição do card: {card_name}')
                 initial_cards.append(card_id)  # Adiciona o ID do card à lista de cards iniciais
 
 # Obtém os cards iniciais
