@@ -17,7 +17,9 @@ pip install discord-webhook
 coisas que ainda precisam ser feitas:
 
  - Fazer com que o bot consiga marcar cargos no discord: "Programação", "Suporte", "Todos",
+   29/06/2023 - adicionado marcação "todos".
 
+ Feito
  - Fazer o bot Mandar mensagem no Discord mencionando a PROGRAMAÇÃO se um card for criado no Trello na coluna BUGS URGENTES:
     "@Todos: [usuario-trello] Criou card em [BUGS-URGENTES] 
     Nome do card: [nome-do-card-criado]
