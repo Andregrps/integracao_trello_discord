@@ -4,7 +4,6 @@ import json
 import requests
 from trello import TrelloClient
 
-
 # Caminho para o arquivo JSON
 json_file_path = 'C:\keys.json'
 
@@ -22,8 +21,7 @@ TRELLO_API_KEY = keys_data['TRELLO_API_KEY']
 TRELLO_TOKEN = keys_data['TRELLO_TOKEN']
 DISCORD_WEBHOOK_URL = keys_data['DISCORD_WEBHOOK_URL']
 TRELLO_BOARD_ID = keys_data['TRELLO_BOARD_ID']
-TRELLO_LIST_ID = keys_data['TRELLO_LIST_ID']
-
+BUG_URGENTE_ID = keys_data.get('BUG_URGENTE_ID')  # Obtém a ID da lista "BUG URGENTE" do arquivo JSON
 
 # Inicialização do webhook do Discord
 webhook = DiscordWebhook(url=DISCORD_WEBHOOK_URL)
@@ -39,6 +37,10 @@ client = TrelloClient(
     token_secret=None
 )
 
+# Obtém o nome da lista "BUG URGENTE"
+trello_list = client.get_list(BUG_URGENTE_ID)
+bug_urgente_list_name = trello_list.name
+
 # Função para enviar uma mensagem no webhook do Discord
 def send_discord_message(message):
     webhook.content = message
@@ -46,18 +48,15 @@ def send_discord_message(message):
 
 # Função para obter o nome do usuário pelo ID
 def get_member_name(card_id):
-
     url = f"https://api.trello.com/1/boards/{TRELLO_BOARD_ID}/actions"
-
     query = {
         'key': TRELLO_API_KEY,
         'token': TRELLO_TOKEN,
-           "filter": "createCard",
-        "fields": "idMemberCreator",
-        "idModels": card_id
+        'filter': 'createCard',
+        'fields': 'idMemberCreator',
+        'idModels': card_id
     }
-
-    response = requests.request( "GET", url, params=query)
+    response = requests.request("GET", url, params=query)
     if response.status_code == 200:
         data = response.json()
         if len(data) > 0:
@@ -69,11 +68,10 @@ def get_member_name(card_id):
         print("Erro na requisição:", response.status_code)
 
     return name
-    
 
 # Função para verificar as alterações no Trello
 def check_trello():
-    url = f'https://api.trello.com/1/lists/{TRELLO_LIST_ID}/cards'
+    url = f'https://api.trello.com/1/lists/{BUG_URGENTE_ID}/cards'
     params = {
         'key': TRELLO_API_KEY,
         'token': TRELLO_TOKEN
@@ -87,11 +85,11 @@ def check_trello():
             if card_id not in initial_cards:
                 member_name = get_member_name(card_id)
                 card_name = card_data['name']
-                send_discord_message(f'<@&989164790087827498> Novo card criado por {member_name}, descrição do card: {card_name}')
+                send_discord_message(f'<@&989164790087827498> Novo card criado por {member_name}, em {bug_urgente_list_name}, descrição do card: {card_name}')
                 initial_cards.append(card_id)  # Adiciona o ID do card à lista de cards iniciais
 
 # Obtém os cards iniciais
-list_ = client.get_list(TRELLO_LIST_ID)
+list_ = client.get_list(BUG_URGENTE_ID)
 initial_cards = [card.id for card in list_.list_cards()]
 
 # Loop contínuo para verificar o Trello
